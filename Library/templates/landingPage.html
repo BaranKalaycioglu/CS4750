@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Landing Page</title>
+</head>
+<body>
+    <h1>All Games</h1>
+    <ul>
+        {% for game in games %}
+            <li>{{ game.name }} - {{ game.genre }} - {{ game.platform }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

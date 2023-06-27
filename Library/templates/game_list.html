@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Landing Page</title>
+</head>
+<body>
+    <h1>All Games</h1>
+    {% for game in games %}
+    <p>{{ game.name }}</p>
+    <p><a href="{% url 'game_delete' pk=game.pk %}">Delete</a></p>
+    {% endfor %}
+    <p><a href="{% url 'game_add' %}">New Game</a></p>
+</body>
+</html>
