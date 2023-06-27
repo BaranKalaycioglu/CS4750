@@ -1,12 +1,31 @@
 <html>
 <head>
     <title>Landing Page</title>
+    <style>
+        .game-info {
+            margin-left: 2em;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
 <body>
     <h1>All Games</h1>
     {% for game in games %}
-    <p>{{ game.name }}</p>
-    <p><a href="{% url 'game_delete' pk=game.pk %}">Delete</a></p>
+    <hr> <!-- line above -->
+    <div>
+        <p>{{ game.name }}</p>
+        <div class="game-info">
+            <p>Genre: {{ game.genre }}</p>
+            <p>Developer: {{ game.developer }}</p>
+            <p>Platform: {{ game.platform }}</p>
+            <p>Price: {{ game.price }}</p>
+            <p>
+                <a href="{% url 'game_edit' game.id %}">Edit</a>
+                <a href="{% url 'game_delete' game.id %}">Delete</a>
+            </p>
+        </div>
+    </div>
+    <hr> <!-- line below -->
     {% endfor %}
     <p><a href="{% url 'game_add' %}">New Game</a></p>
 </body>
