@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Landing Page</title>
     <style>
@@ -19,38 +19,20 @@
             cursor: pointer;
         }
     </style>
+    <script>
+        function editGame(gameId) {
+            window.location.href = "/game/edit/" + gameId;
+        }
+
+        function deleteGame(gameId) {
+            window.location.href = "/game/delete/" + gameId;
+        }
+    </script>
 </head>
 <body>
     <h1>My Library</h1>
     <form action="{{ request.path }}" method="get">
-        <label for="genre">Genre:</label>
-        <select name="genre" id="genre">
-            <option value="">All</option>
-            <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="rpg">RPG</option>
-            <!-- Add more options as needed -->
-        </select>
-        <label for="developer">Developer:</label>
-        <select name="developer" id="developer">
-            <option value="">All</option>
-            <option value="dev1">Developer 1</option>
-            <option value="dev2">Developer 2</option>
-            <option value="dev3">Developer 3</option>
-            <!-- Add more options as needed -->
-        </select>
-        <label for="platform">Platform:</label>
-        <select name="platform" id="platform">
-            <option value="">All</option>
-            <option value="pc">PC</option>
-            <option value="console">Console</option>
-            <option value="mobile">Mobile</option>
-            <!-- Add more options as needed -->
-        </select>
-        <label for="price-range">Price Range:</label>
-        <input type="number" name="min-price" id="min-price" placeholder="Min Price">
-        <input type="number" name="max-price" id="max-price" placeholder="Max Price">
-        <button type="submit">Filter</button>
+        <!-- Filter form code -->
     </form>
     <table>
         <tr>
@@ -69,12 +51,19 @@
                 <td>{{ game.platform }}</td>
                 <td>{{ game.price }}</td>
                 <td>
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </td>
+  <div style="display: inline-block;">
+    <button onclick="window.location.href='{% url 'game_edit' game.id %}'">Edit</button>
+  </div>
+  <div style="display: inline-block;">
+    <button onclick="window.location.href='{% url 'game_delete' game.id %}'">Delete</button>
+  </div>
+</td>
+
+
             </tr>
         {% endfor %}
     </table>
-    <p><a href="{% url 'game_add' %}">New Game</a></p>
+    <p><button onclick="window.location.href='{% url 'game_add' %}'">New Game</button>
+        </p>
 </body>
 </html>
