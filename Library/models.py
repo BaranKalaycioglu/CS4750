@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import  timezone
 
 # Create your models here.
 class User(models.Model):
@@ -11,7 +11,7 @@ class Game(models.Model):
     developer = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
     price = models.IntegerField()
-
+    # addedDateTime = models.DateTimeField(default= timezone.now(),verbose_name= 'Added Date & Time ')
     def __str__ (self):
         return self.name
 
@@ -21,5 +21,4 @@ class UserGame(models.Model):
     rating = models.IntegerField()
     achievements = models.TextField()
     playtime: models.IntegerField()
-
 
