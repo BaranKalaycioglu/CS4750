@@ -12,9 +12,14 @@ class Game(models.Model):
     platform = models.CharField(max_length=100)
     price = models.IntegerField()
 
+    def __str__ (self):
+        return self.name
+
 class UserGame(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     rating = models.IntegerField()
     achievements = models.TextField()
     playtime: models.IntegerField()
+
+
