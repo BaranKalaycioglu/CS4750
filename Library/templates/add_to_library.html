@@ -1,0 +1,8 @@
+{% block content %}
+  <h2>Add game to library</h2>
+  <form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Add to library</button>
+  </form>
+{% endblock %}

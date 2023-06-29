@@ -1,6 +1,6 @@
-<p>Are you sure you want to delete "{{ game.name }}"?</p>
+<p>Are you sure you want to delete "{{ usergame.game.name }}"?</p>
 <form method="POST">
 {% csrf_token %}
 <button type="submit">Yes, delete</button>
 </form>
-<a href="{% url 'game_list' %}">No, take me back</a>
+<a href="{% url 'library' %}">No, take me back</a>

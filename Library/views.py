@@ -1,40 +1,37 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Game
-from .forms import GameForm
+from .models import Game, UserGame
+from .forms import GameForm, UserGameForm
 
-def landingPage(request):
-    games = Game.objects.all()
-    return render(request, 'landingPage.html', {'games': games})
+def library(request):
+    user_games = UserGame.objects.filter()
+    return render(request, 'library.html', {'user_games': user_games})
 
-def game_list(request):
-    games = Game.objects.all()
-    return render(request, 'game_list.html', {'games': games})
-
-def game_add(request):
+def add_to_library(request):
     if request.method == "POST":
-        form = GameForm(request.POST)
+        form = UserGameForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('game_list')
+            user_game = form.save(commit=False)
+            user_game.save()
+            return redirect('library')  # update to the new library view
     else:
-        form = GameForm()
-    return render(request, 'game_edit.html', {'form': form})
+        form = UserGameForm()
+    return render(request, 'add_to_library.html', {'form': form})
 
-def game_edit(request, pk):
-    game = get_object_or_404(Game, pk=pk)
+def usergame_edit(request, pk):
+    usergame = get_object_or_404(UserGame, pk=pk)
     if request.method == "POST":
-        form = GameForm(request.POST, instance=game)
+        form = UserGameForm(request.POST, instance=usergame)
         if form.is_valid():
-            game = form.save(commit=False)
-            game.save()
-            return redirect('game_list')
+            usergame = form.save(commit=False)
+            usergame.save()
+            return redirect('library')  # update to the new library view
     else:
-        form = GameForm(instance=game)
-    return render(request, 'game_edit.html', {'form': form})
+        form = UserGameForm(instance=usergame)
+    return render(request, 'game_edit.html', {'form': form})  # reusing the same template
 
-def game_delete(request, pk):
-    game = Game.objects.get(pk=pk)
+def usergame_delete(request, pk):
+    usergame = UserGame.objects.get(pk=pk)
     if request.method == 'POST':
-        game.delete()
-        return redirect('game_list')
-    return render(request, 'game_confirm_delete.html', {'game': game})
+        usergame.delete()
+        return redirect('library')  # update to the new library view
+    return render(request, 'game_confirm_delete.html', {'usergame': usergame})
