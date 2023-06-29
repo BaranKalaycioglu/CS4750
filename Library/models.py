@@ -11,7 +11,7 @@ class Game(models.Model):
     developer = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
     price = models.IntegerField()
-    # addedDateTime = models.DateTimeField(default= timezone.now(),verbose_name= 'Added Date & Time ')
+    addedDateTime = models.DateTimeField(default= timezone.now)
     def __str__ (self):
         return self.name
 
