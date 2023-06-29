@@ -8,21 +8,4 @@
       </scope>
     </mapping>
   </component>
-  <component name="SqlDataSourceStorage">
-    <option name="dataSources">
-      <list>
-        <State>
-          <option name="id" value="f285c4f1-29da-437e-a2cd-207d2b700395" />
-          <option name="name" value="DDL data source" />
-          <option name="dbmsName" value="SQLITE" />
-          <option name="urls">
-            <array>
-              <option value="file://$USER_HOME$/Desktop/CS4750Project.db" />
-            </array>
-          </option>
-          <option name="outLayout" value="File per object by schema.groovy" />
-        </State>
-      </list>
-    </option>
-  </component>
 </project>
