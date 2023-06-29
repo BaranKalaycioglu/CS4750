@@ -2,13 +2,54 @@
 <html>
 <head>
     <title>Landing Page</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .edit-button, .delete-button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>All Games</h1>
-    <ul>
+    <h1>My Library</h1>
+    <table>
+        <tr>
+            <th>Game Name</th>
+            <th>Genre</th>
+            <th>Developer</th>
+            <th>Platform</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
         {% for game in games %}
-            <li>{{ game.name }} - {{ game.genre }} - {{ game.platform }}</li>
+            <tr>
+                <td>{{ game.name }}</td>
+                <td>{{ game.genre }}</td>
+                <td>{{ game.developer }}</td>
+                <td>{{ game.platform }}</td>
+                <td>{{ game.price }}</td>
+                <td>
+                    <div class="actions">
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 </body>
 </html>
