@@ -6,6 +6,7 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = ['name', 'genre', 'developer', 'platform', 'price']
+        labels = {'name': "Game Name", 'developer': 'Game Developer", 'platform': "Platform", 'price': "Game Price"}
 
 class UserGameForm(forms.ModelForm):
     class Meta:
@@ -18,4 +19,4 @@ class UserGameForm(forms.ModelForm):
         if rating < 0 or rating > 10:
             raise ValidationError('Rating must be between 0 and 10')
 
-        return rating
+        return rating        

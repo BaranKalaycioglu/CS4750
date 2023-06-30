@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from django.utils import  timezone
 
 # Create your models here.
 class User(models.Model):
@@ -15,7 +16,10 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
-    
+        addedDateTime = models.DateTimeField(default= timezone.now)
+    def __str__ (self):
+        return self.name
+
 class UserGame(models.Model):
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.PROTECT)  # change to PROTECT
