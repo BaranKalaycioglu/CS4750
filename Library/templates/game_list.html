@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Landing Page</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .edit-button, .delete-button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function editGame(gameId) {
+            window.location.href = "/game/edit/" + gameId;
+        }
+
+        function deleteGame(gameId) {
+            window.location.href = "/game/delete/" + gameId;
+        }
+    </script>
+</head>
+<body>
+    <h1>My Library</h1>
+    <form action="{{ request.path }}" method="get">
+        <!-- Filter form code -->
+    </form>
+    <table>
+        <tr>
+            <th>Game Name</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th>Playtime</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        {% for user_game in user_games %}
+            <tr>
+                <td>{{ user_game.name }}</td>
+                <td>{{ user_game.game.genre }}</td>
+                <td>{{ game.developer }}</td>
+                <td>{{ game.platform }}</td>
+                <td>{{ game.price }}</td>
+                <td>
+  <div style="display: inline-block;">
+    <button onclick="window.location.href='{% url 'game_edit' game.id %}'">Edit</button>
+  </div>
+  <div style="display: inline-block;">
+    <button onclick="window.location.href='{% url 'game_delete' game.id %}'">Delete</button>
+  </div>
+</td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+    <p><button onclick="window.location.href='{% url 'game_add' %}'">New Game</button>
+        </p>
+</body>
+</html>

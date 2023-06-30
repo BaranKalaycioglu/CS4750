@@ -30,18 +30,18 @@
         <tr>
             <th>Game Name</th>
             <th>Genre</th>
-            <th>Developer</th>
-            <th>Platform</th>
+            <th>Rating</th>
+            <th>Playtime</th>
             <th>Price</th>
             <th>Actions</th>
         </tr>
-        {% for game in games %}
+        {% for user_game in games %}
             <tr>
-                <td>{{ game.name }}</td>
-                <td>{{ game.genre }}</td>
-                <td>{{ game.developer }}</td>
-                <td>{{ game.platform }}</td>
-                <td>{{ game.price }}</td>
+                <td>{{ user_game.game.name }}</td>
+                <td>{{ user_game.game.genre }}</td>
+                <td>{{ user_game.rating }}</td>
+                <td>{{ user_game.game.platform }}</td>
+                <td>{{ user_game.game.price }}</td>
                 <td>
                     <div class="actions">
                         <button class="edit-button">Edit</button>
