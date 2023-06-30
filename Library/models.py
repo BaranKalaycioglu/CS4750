@@ -14,9 +14,6 @@ class Game(models.Model):
     platform = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
-    def __str__(self):
-        return self.name
-        addedDateTime = models.DateTimeField(default= timezone.now)
     def __str__ (self):
         return self.name
 
@@ -29,6 +26,8 @@ class UserGame(models.Model):
         ])
     achievements = models.TextField()
     playtime = models.IntegerField(null=True, blank=True)
+    addedDateTime = models.DateTimeField(default= timezone.now)
+    review = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return {self.game.name}

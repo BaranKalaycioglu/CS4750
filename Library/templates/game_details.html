@@ -1,0 +1,11 @@
+<h2>{{ usergame.game.name }}</h2>
+<p>Genre: {{ usergame.game.genre }}</p>
+<p>Developer: {{ usergame.game.developer }}</p>
+<p>Platform: {{ usergame.game.platform }}</p>
+<p>Added Date: {{ usergame.addedDateTime }}</p>
+<form method="POST">
+    {% csrf_token %}
+    <label for="review">Review:</label><br>
+    <textarea id="review" name="review" rows="4" cols="50">{{ usergame.review }}</textarea><br>
+    <input type="submit" value="Save Review">
+</form>

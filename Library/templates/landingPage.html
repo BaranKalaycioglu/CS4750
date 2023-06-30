@@ -16,7 +16,7 @@
             display: flex;
             justify-content: space-between;
         }
-        .edit-button, .delete-button {
+        .edit-button, .delete-button, .new-game-button, .details-button {
             padding: 5px 10px;
             background-color: #f0f0f0;
             border: none;
@@ -35,21 +35,29 @@
             <th>Price</th>
             <th>Actions</th>
         </tr>
-        {% for user_game in games %}
+        {% for user_game in user_games %}
             <tr>
                 <td>{{ user_game.game.name }}</td>
                 <td>{{ user_game.game.genre }}</td>
-                <td>{{ user_game.rating }}</td>
-                <td>{{ user_game.game.platform }}</td>
+                <td>{{ user_game.rating }}/10</td>
+                <td>{{ user_game.playtime }}hrs</td>
                 <td>{{ user_game.game.price }}</td>
                 <td>
                     <div class="actions">
-                        <button class="edit-button">Edit</button>
-                        <button class="delete-button">Delete</button>
+                        <a href="{% url 'usergame_edit' user_game.id %}">
+                            <button class="edit-button">Edit</button>
+                        </a>
+                        <a href="{% url 'usergame_delete' user_game.id %}">
+                            <button class="delete-button">Delete</button>
+                        </a>
+                        <a href="{% url 'usergame_details' user_game.id %}">
+                            <button class="details-button">Details</button>
+                        </a>
                     </div>
                 </td>
             </tr>
         {% endfor %}
+        <p><a href="{% url 'add_to_library' %}" class="new-game-button">New Game</a></p>
     </table>
 </body>
 </html>

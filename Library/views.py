@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Game, UserGame
-from .forms import GameForm, UserGameForm
+from .forms import GameForm, UserGameForm, ReviewForm
 
-def library(request):
+def landingPage(request):
     user_games = UserGame.objects.filter()
-    return render(request, 'library.html', {'user_games': user_games})
+    return render(request, 'landingPage.html', {'user_games': user_games})
 
 def add_to_library(request):
     if request.method == "POST":
@@ -28,6 +28,17 @@ def usergame_edit(request, pk):
     else:
         form = UserGameForm(instance=usergame)
     return render(request, 'game_edit.html', {'form': form})  # reusing the same template
+
+def usergame_details(request, pk):
+    usergame = get_object_or_404(UserGame, pk=pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, instance=usergame)
+        if form.is_valid():
+            usergame = form.save()
+            return redirect('library')
+    else:
+        form = ReviewForm(instance=usergame)
+    return render(request, 'game_details.html', {'form': form, 'usergame': usergame})
 
 def usergame_delete(request, pk):
     usergame = UserGame.objects.get(pk=pk)

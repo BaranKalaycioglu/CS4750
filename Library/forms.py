@@ -11,7 +11,7 @@ class GameForm(forms.ModelForm):
 class UserGameForm(forms.ModelForm):
     class Meta:
         model = UserGame
-        fields = ['game', 'rating', 'achievements', 'playtime']
+        fields = ['game', 'rating', 'achievements', 'playtime', 'review']
 
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
@@ -20,3 +20,8 @@ class UserGameForm(forms.ModelForm):
             raise ValidationError('Rating must be between 0 and 10')
 
         return rating        
+    
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = UserGame
+        fields = ['review']
